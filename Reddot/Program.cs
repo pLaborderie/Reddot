@@ -1,6 +1,10 @@
-using Reddot;
+using Reddot.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Supabase connection info
+var url = Environment.GetEnvironmentVariable("SUPABASE_URL") ?? "";
+var key = Environment.GetEnvironmentVariable("SUPABASE_KEY");
 
 // Add services to the container.
 
@@ -9,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<Supabase.Client>(_ => new Supabase.Client(url, key));
 
 var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("port") ?? "3000";

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Reddot.Models;
+using Reddot.Repositories;
 
 namespace Reddot.Controllers
 {
@@ -14,23 +16,52 @@ namespace Reddot.Controllers
         }
 
         [HttpGet]
-        public List<Post> GetPosts()
+        public List<PostDTO> GetPosts()
         {
-            return _postRepository.GetPosts();
+            var result = _postRepository.GetPosts().Result;
+            var postDtos = new List<PostDTO>();
+            foreach (var model in result)
+            {
+                postDtos.Add(new PostDTO()
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    Content = model.Content,
+                    Author = model.Author,
+                    Score = model.Score,
+                    Date = model.Date,
+                });
+            }
+            System.Diagnostics.Debug.WriteLine(postDtos);
+            return postDtos;
         }
 
         [HttpGet("{id}")]
-        public Post? GetPost([FromRoute] int id)
+        public PostDTO? GetPost([FromRoute] int id)
         {
-            return _postRepository.GetPost(id);
+            var result = _postRepository.GetPost(id).Result;
+            return new PostDTO()
+            {
+                Id = result.Id,
+                Title = result.Title,
+                Content = result.Content,
+                Author = result.Author,
+                Score = result.Score,
+                Date = result.Date,
+            };
         }
 
         [HttpPost]
-        public Post? CreatePost(Post post)
+        public PostDTO? CreatePost(PostDTO postDTO)
         {
-            post.Id = 0; // Ignore Id sent from client, generated on insert with autoincrement
+            Post post = new Post()
+            {
+                Author = postDTO.Author,
+                Title = postDTO.Title,
+                Content = postDTO.Content,
+            };
             _postRepository.AddPost(post);
-            return post;
+            return postDTO;
         }
     }
 }

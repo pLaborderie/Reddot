@@ -1,33 +1,26 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:54937",
-      "sslPort": 44308
-    }
-  },
+{
   "profiles": {
     "http": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5198",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5198"
     },
     "https": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7194;http://localhost:5198",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SUPABASE_URL": "https://lyehfbwgnftoloovmgjd.supabase.co",
+        "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5ZWhmYndnbmZ0b2xvb3ZtZ2pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUyMDkzMjIsImV4cCI6MjAyMDc4NTMyMn0.7JZIPYsKz94XrR9wFykrLXRG1NfeEPo4JvCIiC-f7-Y"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7194;http://localhost:5198"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -36,6 +29,15 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:54937",
+      "sslPort": 44308
     }
   }
 }
