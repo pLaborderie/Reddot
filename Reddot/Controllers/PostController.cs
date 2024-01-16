@@ -7,18 +7,12 @@ namespace Reddot.Controllers
 {
     [ApiController]
     [Route("posts")]
-    public class PostController : Controller
+    public class PostController(IPostRepository postRepository) : Controller
     {
-        readonly IPostRepository _postRepository;
-        public PostController(IPostRepository postRepository)
-        {
-            _postRepository = postRepository;
-        }
-
         [HttpGet]
         public List<PostDTO> GetPosts()
         {
-            var result = _postRepository.GetPosts().Result;
+            var result = postRepository.GetPosts().Result;
             var postDtos = new List<PostDTO>();
             foreach (var model in result)
             {
@@ -39,7 +33,7 @@ namespace Reddot.Controllers
         [HttpGet("{id}")]
         public PostDTO? GetPost([FromRoute] int id)
         {
-            var result = _postRepository.GetPost(id).Result;
+            var result = postRepository.GetPost(id).Result;
             return new PostDTO()
             {
                 Id = result.Id,
@@ -60,7 +54,7 @@ namespace Reddot.Controllers
                 Title = postDTO.Title,
                 Content = postDTO.Content,
             };
-            _postRepository.AddPost(post);
+            postRepository.AddPost(post);
             return postDTO;
         }
     }
