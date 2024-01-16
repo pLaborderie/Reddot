@@ -17,7 +17,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SUPABASE_URL": "https://lyehfbwgnftoloovmgjd.supabase.co",
-        "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5ZWhmYndnbmZ0b2xvb3ZtZ2pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUyMDkzMjIsImV4cCI6MjAyMDc4NTMyMn0.7JZIPYsKz94XrR9wFykrLXRG1NfeEPo4JvCIiC-f7-Y"
+        "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5ZWhmYndnbmZ0b2xvb3ZtZ2pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUyMDkzMjIsImV4cCI6MjAyMDc4NTMyMn0.7JZIPYsKz94XrR9wFykrLXRG1NfeEPo4JvCIiC-f7-Y",
+        "SUPABASE_SECRET_KEY": "XFep6qbGLki36fKhC9m/qZFIgqPFmGcoBVGz3nBTvVHs/2gwtCDtUM3IIKz7rM0VTIbUkK79EMbaUmz+HAoIvQ=="
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7194;http://localhost:5198"

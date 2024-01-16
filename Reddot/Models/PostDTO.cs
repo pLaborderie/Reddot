@@ -13,5 +13,18 @@
         public string? Title { get; set; }
 
         public string? Content { get; set; }
+
+        public static PostDTO fromPost(Post post)
+        {
+            return new PostDTO()
+            {
+                Id = post.Id,
+                Author = post.Author,
+                Date = post.Date,
+                Score = post.Score,
+                Title = post.Title,
+                Content = post.Content
+            };
+        }
     }
 }

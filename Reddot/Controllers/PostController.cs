@@ -16,15 +16,7 @@ namespace Reddot.Controllers
             var postDtos = new List<PostDTO>();
             foreach (var model in result)
             {
-                postDtos.Add(new PostDTO()
-                {
-                    Id = model.Id,
-                    Title = model.Title,
-                    Content = model.Content,
-                    Author = model.Author,
-                    Score = model.Score,
-                    Date = model.Date,
-                });
+                postDtos.Add(PostDTO.fromPost(model));
             }
             System.Diagnostics.Debug.WriteLine(postDtos);
             return postDtos;
@@ -34,15 +26,7 @@ namespace Reddot.Controllers
         public PostDTO? GetPost([FromRoute] int id)
         {
             var result = postRepository.GetPost(id).Result;
-            return new PostDTO()
-            {
-                Id = result.Id,
-                Title = result.Title,
-                Content = result.Content,
-                Author = result.Author,
-                Score = result.Score,
-                Date = result.Date,
-            };
+            return PostDTO.fromPost(result);
         }
 
         [HttpPost]

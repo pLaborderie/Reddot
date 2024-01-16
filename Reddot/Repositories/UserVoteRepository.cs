@@ -8,7 +8,7 @@ public class UserVoteRepository(Supabase.Client client) : IUserVoteRepository
     public async Task<UserVote?> GetUserVote(string userUid, int postId)
     {
         return await client.From<UserVote>()
-            .Where(vote => vote.UserUID == userUid && vote.Post.Id == postId)
+            .Where(vote => vote.UserUID == userUid && vote.PostId == postId)
             .Single();
     }
 
@@ -23,26 +23,26 @@ public class UserVoteRepository(Supabase.Client client) : IUserVoteRepository
         return upvotes - downvotes;
     }
     
-    public async void AddVote(UserVote vote)
+    public async Task<UserVote?> AddVote(UserVote vote)
     {
-        var previousVote = await GetUserVote(vote.UserUID, vote.Post.Id);
+        var previousVote = await GetUserVote(vote.UserUID, vote.PostId);
         if (previousVote != null)
         {
             // If already voted, update vote
-            await client.From<UserVote>()
+            return (await client.From<UserVote>()
                 .Where(x => x.Id == previousVote.Id)
                 .Set(x => x.IsUpvote, vote.IsUpvote)
-                .Update();
+                .Update()).Model;
         }
         else
         {
-            await client.From<UserVote>().Insert(vote);
+            return (await client.From<UserVote>().Insert(vote)).Model;
         }
     }
     
-    public async void CancelVote(int voteId)
+    public Task CancelVote(int voteId)
     {
-        await client.From<UserVote>()
+        return client.From<UserVote>()
             .Where(vote => vote.Id == voteId)
             .Delete();
     }
